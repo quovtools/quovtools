@@ -1,16 +1,10 @@
-import { createClient } from "@supabase/supabase-js";
-import { createServerClient } from "@supabase/auth-helpers-nextjs";
+import { createClient as createSupabaseBrowserClient } from "@supabase/supabase-js";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-// Re-export schema types
 export * from "./schema";
 
-let supabaseClient: SupabaseClient | null = null;
+let browserClient: SupabaseClient | null = null;
 
-/**
- * Create a Supabase client for browser usage
- * Uses environment variables NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
- */
 export function createClient(): SupabaseClient {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -19,19 +13,14 @@ export function createClient(): SupabaseClient {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables");
   }
 
-  // Return cached client if it exists
-  if (supabaseClient) {
-    return supabaseClient;
+  if (browserClient) {
+    return browserClient;
   }
 
-  supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
-  return supabaseClient;
+  browserClient = createSupabaseBrowserClient(supabaseUrl, supabaseAnonKey);
+  return browserClient;
 }
 
-/**
- * Create a Supabase client factory
- * Useful for creating configured clients with custom settings
- */
 export function createSupabaseClient(
   supabaseUrl?: string,
   supabaseKey?: string
@@ -43,12 +32,9 @@ export function createSupabaseClient(
     throw new Error("Missing Supabase URL or key configuration");
   }
 
-  return createClient(url, key);
+  return createSupabaseBrowserClient(url, key);
 }
 
-/**
- * Create a server-side Supabase client for Next.js server components
- */
 export async function createServerSupabaseClient(): Promise<SupabaseClient> {
   const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -57,5 +43,5 @@ export async function createServerSupabaseClient(): Promise<SupabaseClient> {
     throw new Error("Missing Supabase server-side configuration");
   }
 
-  return createClient(supabaseUrl, supabaseKey);
+  return createSupabaseBrowserClient(supabaseUrl, supabaseKey);
 }
