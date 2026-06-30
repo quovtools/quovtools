@@ -1,6 +1,6 @@
 import { createClient as createSupabaseBrowserClient } from "@supabase/supabase-js";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { postgres } from "postgres";
+import postgres from "postgres";
 
 const url =
   process.env.SUPABASE_POOLER_URL ||
