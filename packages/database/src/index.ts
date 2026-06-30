@@ -4,7 +4,7 @@ import { postgres } from "postgres";
 
 const url =
   process.env.SUPABASE_POOLER_URL ||
-  "postgresql://postgres.dtxudbvhxdxzuozmlyrv:[YOUR-PASSWORD]@aws-0-eu-west-1.pooler.supabase.com:6543/postgres";
+  "postgresql://postgres.dtxudbvhxdxzuozmlyrv:[YOUR-PASSWORD]@aws-0-eu-west-1.pooler.supabase.com:5432/postgres?pgbouncer=true";
 
 const supabaseUrl =
   process.env.NEXT_PUBLIC_SUPABASE_URL || "https://dtxudbvhxdxzuozmlyrv.supabase.co";
