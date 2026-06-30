@@ -7,8 +7,7 @@
     "noEmit": false,
     "declaration": true,
     "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler"
+    "module": "ESNext"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
