@@ -1,18 +1,22 @@
 import { createClient as createSupabaseBrowserClient } from "@supabase/supabase-js";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { postgres } from "postgres";
+
+const url =
+  process.env.SUPABASE_POOLER_URL ||
+  "postgresql://postgres.dtxudbvhxdxzuozmlyrv:[YOUR-PASSWORD]@aws-0-eu-west-1.pooler.supabase.com:6543/postgres";
+
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || "https://dtxudbvhxdxzuozmlyrv.supabase.co";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 
 export * from "./schema";
 
 let browserClient: SupabaseClient | null = null;
+let sqlClient: ReturnType<typeof postgres> | null = null;
 
 export function createClient(): SupabaseClient {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables");
-  }
-
   if (browserClient) {
     return browserClient;
   }
@@ -22,26 +26,30 @@ export function createClient(): SupabaseClient {
 }
 
 export function createSupabaseClient(
-  supabaseUrl?: string,
-  supabaseKey?: string
+  supabaseClientUrl?: string,
+  supabaseClientKey?: string
 ): SupabaseClient {
-  const url = supabaseUrl || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = supabaseKey || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const clientUrl = supabaseClientUrl || supabaseUrl;
+  const clientKey = supabaseClientKey || supabaseAnonKey;
+
+  return createSupabaseBrowserClient(clientUrl, clientKey);
+}
+
+export async function createServerSupabaseClient(): Promise<SupabaseClient> {
+  const url = process.env.SUPABASE_URL || supabaseUrl;
+  const key = supabaseServiceRoleKey || supabaseAnonKey;
 
   if (!url || !key) {
-    throw new Error("Missing Supabase URL or key configuration");
+    throw new Error("Missing Supabase server-side configuration");
   }
 
   return createSupabaseBrowserClient(url, key);
 }
 
-export async function createServerSupabaseClient(): Promise<SupabaseClient> {
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    throw new Error("Missing Supabase server-side configuration");
+export function createPostgresPoolerClient() {
+  if (!sqlClient) {
+    sqlClient = postgres(url, { prepare: true });
   }
 
-  return createSupabaseBrowserClient(supabaseUrl, supabaseKey);
+  return sqlClient;
 }

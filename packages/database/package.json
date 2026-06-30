@@ -1,13 +1,13 @@
 {
   "name": "@quov/database",
   "version": "0.1.0",
-  "description": "Shared database types and Supabase client factory",
+  "description": "Shared database types, Supabase client factory, and PostgreSQL Transaction Pooler client",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.mjs"
     }
   },
   "files": [
@@ -17,9 +17,12 @@
     "build": "tsc",
     "type-check": "tsc --noEmit"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@supabase/supabase-js": "^2.0.0",
-    "@supabase/auth-helpers-nextjs": "^0.10.0"
+    "postgres": "^3.4.4"
+  },
+  "peerDependencies": {
+    "@supabase/supabase-js": "^2.0.0"
   },
   "devDependencies": {
     "typescript": "^5.5.0"
