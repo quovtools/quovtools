@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { CheckCircle, Share2, Image, Palette, Hash, Calendar, Brain } from 'lucide-react';
 

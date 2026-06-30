@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { CheckCircle, FileText, Zap, BarChart, Shield, PenTool } from 'lucide-react';
 
