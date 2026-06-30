@@ -27,7 +27,7 @@
   "devDependencies": {
     "postcss": "^8.4.0",
     "autoprefixer": "^10.4.0",
-    "turborepo": "^2.0.0",
+    "turbo": "^2.0.0",
     "typescript": "^5.5.0"
   }
 }
