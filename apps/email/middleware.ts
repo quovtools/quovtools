@@ -1,0 +1,24 @@
+import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export async function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  const supabase = createMiddlewareClient({ cookies: request.cookies }, response);
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  // Placeholder: redirect unauthenticated users or rewrite routes as needed.
+  // Example:
+  // if (!session && request.nextUrl.pathname.startsWith("/dashboard")) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
+
+  return response;
+}
+
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+};

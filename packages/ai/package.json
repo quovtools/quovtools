@@ -1,0 +1,14 @@
+{
+  "name": "@quov/ai",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "openai": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@quov/config",
+  "version": "0.1.0",
+  "description": "Shared ESLint and TypeScript configurations",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "eslint": "^9.0.0",
+    "typescript-eslint": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "turborepo": "^2.0.0",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@quov/ui": ["packages/ui/src"],
+      "@quov/ui/*": ["packages/ui/src/*"],
+      "@quov/auth": ["packages/auth/src"],
+      "@quov/auth/*": ["packages/auth/src/*"],
+      "@quov/payments": ["packages/payments/src"],
+      "@quov/payments/*": ["packages/payments/src/*"],
+      "@quov/ai": ["packages/ai/src"],
+      "@quov/ai/*": ["packages/ai/src/*"],
+      "@quov/email": ["packages/email/src"],
+      "@quov/email/*": ["packages/email/src/*"],
+      "@quov/database": ["packages/database/src"],
+      "@quov/database/*": ["packages/database/src/*"],
+      "@quov/analytics": ["packages/analytics/src"],
+      "@quov/analytics/*": ["packages/analytics/src/*"]
+    }
+  },
+  "include": ["apps/*/src/**/*", "packages/*/src/**/*"],
+  "exclude": ["node_modules", ".next", "dist"]
+}

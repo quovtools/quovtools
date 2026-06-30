@@ -1,0 +1,14 @@
+{
+  "name": "@quov/email",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "resend": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  }
+}
