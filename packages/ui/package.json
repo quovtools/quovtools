@@ -10,14 +10,13 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
-    },
-    "./globals.css": "./src/globals.css"
+    }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc && tsc --module commonjs && copyfiles -f src/*.css dist/",
+    "build": "tsc && tsc --module commonjs",
     "dev": "tsc --build --watch",
     "lint": "eslint src --ext .ts,.tsx"
   },
@@ -36,7 +35,6 @@
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "copyfiles": "^2.4.1",
     "typescript": "^5.5.0"
   }
 }
