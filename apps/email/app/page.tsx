@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   ChevronDown,
   Sparkles,
+  ArrowRight,
   type LucideIcon,
 } from "lucide-react";
 
