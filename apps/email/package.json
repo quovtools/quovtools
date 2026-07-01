@@ -17,7 +17,7 @@
     "@quov/ai": "*",
     "@quov/analytics": "*",
     "framer-motion": "^10.16.0",
-    "lucide-react": "^0.294.0"
+    "lucide-react": "^0.400.0"
   },
   "devDependencies": {
     "typescript": "^5.2.0",

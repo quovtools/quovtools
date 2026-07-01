@@ -14,6 +14,9 @@ import {
   ChevronDown,
   Sparkles,
   ArrowRight,
+  Twitter,
+  Instagram,
+  Linkedin,
   type LucideIcon,
 } from "lucide-react";
 
